@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mogul-mvp-be-auth
+  name: mogul-mvp-be-auth-svc
+  namespace: mogul-dev
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: mogul-mvp-be-auth
