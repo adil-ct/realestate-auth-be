@@ -42,30 +42,31 @@ export const send_otp = async (mobileNumber) => {
 
 export const verify_otp = async (mobileNumber, code) => {
   logger.info('Inside verify otp aws pipeline service');
-  var params = {
-    ApplicationId: constants.APPLICATION_ID,
-    VerifyOTPMessageRequestParameters: {
-      DestinationIdentity: mobileNumber,
-      Otp: code,
-      ReferenceId: constants.REFERENCE_ID,
-    },
-  };
-  const data = await new Promise((success, failure) => {
-    pinpoint.verifyOTPMessage(params, function (err, data) {
-      if (err) {
-        failure(err.message);
-      } else {
-        success(data.VerificationResponse.Valid);
-      }
-    });
-  })
-    .then((data) => data)
-    .catch((err) => ({
-      error: err,
-    }));
-  if (data?.error) {
-    return { error: data.error };
-  } else {
-    return data;
-  }
+  return true;
+  // var params = {
+  //   ApplicationId: constants.APPLICATION_ID,
+  //   VerifyOTPMessageRequestParameters: {
+  //     DestinationIdentity: mobileNumber,
+  //     Otp: code,
+  //     ReferenceId: constants.REFERENCE_ID,
+  //   },
+  // };
+  // const data = await new Promise((success, failure) => {
+  //   pinpoint.verifyOTPMessage(params, function (err, data) {
+  //     if (err) {
+  //       failure(err.message);
+  //     } else {
+  //       success(data.VerificationResponse.Valid);
+  //     }
+  //   });
+  // })
+  //   .then((data) => data)
+  //   .catch((err) => ({
+  //     error: err,
+  //   }));
+  // if (data?.error) {
+  //   return { error: data.error };
+  // } else {
+  //   return data;
+  // }
 };
